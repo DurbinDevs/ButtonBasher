@@ -9,12 +9,14 @@ import androidx.compose.ui.unit.dp
 import com.example.buttonbasher.ViewModel
 import com.example.buttonbasher.components.ButtonLevelOne
 import com.example.buttonbasher.components.ScoreBox
+import com.example.buttonbasher.components.TimerBox
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun LevelOneScreen(
     viewModel: ViewModel
 ) {
+    val timeRemaining = viewModel.timeRemaining.collectAsState().value
     Box(
         modifier = Modifier
             .padding(2.dp)
@@ -23,10 +25,10 @@ fun LevelOneScreen(
        Row(
            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-           horizontalArrangement = Arrangement.Center
+           horizontalArrangement = Arrangement.SpaceEvenly
 
         ){
-
+            TimerBox(timeRemaining)
             ScoreBox(viewModel.scoreCount)
         }
 

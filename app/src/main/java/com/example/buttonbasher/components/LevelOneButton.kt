@@ -26,6 +26,7 @@ fun ButtonLevelOne(
     }
 
     val count = viewModel.scoreCount
+    val timerStarted = viewModel.timerStarted
 
 
     val buttonSize: Dp by animateDpAsState(
@@ -36,6 +37,10 @@ fun ButtonLevelOne(
             else -> 12.dp
         }
     )
+
+    if (clicked && !timerStarted){
+        viewModel.startTimer()
+    }
     var randomY by remember {
         mutableStateOf(50.dp)
     }
@@ -48,6 +53,7 @@ fun ButtonLevelOne(
         viewModel.scoreCount()
         clicked = false
     }
+
     Box(
         modifier = Modifier
             .height(buttonSize)

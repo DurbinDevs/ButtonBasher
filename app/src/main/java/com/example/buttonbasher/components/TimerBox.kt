@@ -13,22 +13,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun ScoreBox(score: Int) {
+fun TimerBox(time: Long) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
         Text(
-            text = "Score",
+            text = "Time",
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp
         )
         Spacer(modifier = Modifier.width(5.dp))
-        Box(contentAlignment = Alignment.Center,
+        Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
                 .height(40.dp)
                 .width(100.dp)
@@ -42,13 +44,13 @@ fun ScoreBox(score: Int) {
                     Color.LightGray,
                     shape = RoundedCornerShape(20.dp)
                 )
+
         ) {
             Text(
-                text = score.toString(),
+                text = time.toString(),
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp
+                fontSize = 30.sp,
             )
         }
     }
-
 }
