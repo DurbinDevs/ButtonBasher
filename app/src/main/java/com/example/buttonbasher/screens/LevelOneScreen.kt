@@ -23,22 +23,18 @@ fun LevelOneScreen(
 ) {
     val timeRemaining = viewModel.timeRemaining.collectAsState().value
 
-    LaunchedEffect(key1 = true ){
-        if (viewModel.gameTimerComplete.value) {
+    if (viewModel.gameTimerComplete.value) {
+        LaunchedEffect(key1 = true ){
             navController.navigate(Route.LEVEL_TWO)
             Log.d(TAG, "LevelOneScreen: ")
-        }else Unit
-    }
-    if (viewModel.gameTimerComplete.value) {
-        navController.navigate(Route.LEVEL_TWO)
-        Log.d(TAG, "LevelOneScreen: ")
+        }
     }
     Box(
         modifier = Modifier
             .padding(2.dp)
             .fillMaxSize()
     ) {
-       Row(
+        Row(
            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
            horizontalArrangement = Arrangement.SpaceEvenly
