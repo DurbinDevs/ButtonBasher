@@ -20,7 +20,7 @@ class ViewModel(
     var timerStarted = false
     var gameTimerComplete = mutableStateOf(false)
     private var gameTimer: CountDownTimer? = null
-    private val _timeRemaining = MutableStateFlow<Long>(30)
+    private val _timeRemaining = MutableStateFlow<Long>(15)
     val timeRemaining: StateFlow<Long> = _timeRemaining
 
     fun scoreCount() {
@@ -29,19 +29,21 @@ class ViewModel(
 
     fun startTimer(){
         timerStarted = true
+        gameTimerComplete.value = false
             gameTimer()
     }
 
 
 
     fun gameTimer() {
-        gameTimer = object : CountDownTimer(30000, 1000) {
+        gameTimer = object : CountDownTimer(15000, 1000) {
             override fun onTick(secUntilFinished: Long) {
                 _timeRemaining.value = secUntilFinished / 1000
             }
 
             override fun onFinish() {
                 gameTimerComplete.value = true
+                timerStarted = !timerStarted
             }
 
         }.start()

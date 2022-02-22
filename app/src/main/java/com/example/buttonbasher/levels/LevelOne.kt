@@ -1,4 +1,4 @@
-package com.example.buttonbasher.components
+package com.example.buttonbasher.levels
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
@@ -17,7 +17,7 @@ import kotlin.random.nextInt
 
 
 @Composable
-fun ButtonLevelOne(
+fun LevelOne(
     viewModel: ViewModel
 ) {
 
@@ -29,7 +29,7 @@ fun ButtonLevelOne(
     val timerStarted = viewModel.timerStarted
 
 
-    val buttonSize: Dp by animateDpAsState(
+    val circleSize: Dp by animateDpAsState(
         when (count) {
             in 0..10 -> 100.dp
             in 11..20 -> 50.dp
@@ -51,19 +51,19 @@ fun ButtonLevelOne(
         randomX = Random.nextInt(0..280).dp
         randomY = Random.nextInt(50..600).dp
         viewModel.scoreCount()
-        clicked = false
+        clicked = !clicked
     }
 
     Box(
         modifier = Modifier
-            .height(buttonSize)
-            .width(buttonSize)
+            .height(circleSize)
+            .width(circleSize)
             .absoluteOffset(
                 x = randomX,
                 y = randomY
             )
             .clip(RoundedCornerShape(100.dp))
-            .clickable { clicked = true }
+            .clickable { clicked = true}
             .background(Color.Black)
 
     ) {
